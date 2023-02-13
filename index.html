@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="style.css" />
+    <title>QuickTabLink</title>
+  </head>
+  <body>
+    <div class="category-container category" id="category-container">
+      <input
+        class="category__input"
+        type="text"
+        id="category-name"
+        placeholder="Enter a Category" />
+      <button class="category__create button" id="create-category">
+        Create
+      </button>
+      <select class="category__select button" id="existing-categories">
+        <option value="Without Category">Without Category</option>
+      </select>
+    </div>
+    <div class="button-container">
+      <button class="button-tab button" id="tab-btn">SAVE TAB</button>
+      <button class="button-delete button" id="delete-btn">DELETE ALL</button>
+    </div>
+    <div class="links"></div>
+
+    <script src="script.js"></script>
+  </body>
+</html>

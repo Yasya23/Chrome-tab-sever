@@ -50,6 +50,32 @@ function addLinkInTheList(activeCategory, link) {
     createListByCategoryName(`${activeCategory}`);
     activeList = document.getElementById(`${activeCategory}`);
   }
+  createListElement(activeList, activeCategory, link);
+  deleteListElement();
+}
+
+function deleteListElement() {
+  const closeBtn = document.querySelectorAll(".link__close");
+
+  closeBtn.forEach(function (btn) {
+    btn.addEventListener("click", function ({ target }) {
+      const categories = getLinksFromLocalStorage();
+      const category = categories[target.dataset.id];
+      if (!category) {
+        return;
+      }
+      const index = category.indexOf(target.dataset.link);
+      if (index !== -1) {
+        category.splice(index, 1);
+      }
+      setLinksToLocalStorage(categories);
+      this.parentElement.remove();
+      checkEmptyCategories();
+    });
+  });
+}
+
+function createListElement(activeList, activeCategory, link) {
   const li = document.createElement("li");
   li.classList.add("list__link", "link");
   li.innerHTML = `<p class="link__wrapper" >
@@ -60,29 +86,10 @@ function addLinkInTheList(activeCategory, link) {
           </p>         
         `;
   activeList.appendChild(li);
-
-  const closeBtn = document.querySelectorAll(".link__close");
-
-  closeBtn.forEach(function (btn) {
-    btn.addEventListener("click", function ({ target }) {
-      const categories = JSON.parse(localStorage.getItem("categories") || "{}");
-      let category = categories[target.dataset.id];
-      if (!category) {
-        return;
-      }
-      const index = category.indexOf(target.dataset.link);
-      if (index !== -1) {
-        category.splice(index, 1);
-      }
-      localStorage.setItem("categories", JSON.stringify(categories));
-      this.parentElement.remove();
-      checkEmptyCategories();
-    });
-  });
 }
 
 function checkEmptyCategories() {
-  const categories = JSON.parse(localStorage.getItem("categories") || "{}");
+  const categories = getLinksFromLocalStorage();
   for (const category in categories) {
     if (categories[category].length === 0) {
       let ulElement = document.getElementById(category);
@@ -90,7 +97,7 @@ function checkEmptyCategories() {
       delete categories[category];
     }
   }
-  localStorage.setItem("categories", JSON.stringify(categories));
+  setLinksToLocalStorage(categories);
 }
 
 function createListByCategoryName(activeCategory) {
@@ -102,26 +109,30 @@ function createListByCategoryName(activeCategory) {
 }
 
 function saveLinkToCategory(activeCategory, link) {
-  let categories = JSON.parse(localStorage.getItem("categories")) || {};
+  const categories = getLinksFromLocalStorage();
   if (!categories[activeCategory]) {
     categories[activeCategory] = [];
   }
-  localStorage.setItem("categories", JSON.stringify(categories));
+  setLinksToLocalStorage(categories);
   if (!categories[activeCategory].includes(link)) {
     categories[activeCategory].push(link);
     addLinkInTheList(activeCategory, link);
   }
-  localStorage.setItem("categories", JSON.stringify(categories));
+
+  setLinksToLocalStorage(categories);
 }
 
 function getLinksFromLocalStorage() {
   return JSON.parse(localStorage.getItem("categories")) || {};
 }
 
+function setLinksToLocalStorage(categories) {
+  localStorage.setItem("categories", JSON.stringify(categories));
+}
+
 function renderLinksFromLocalStorage() {
   list.innerHTML = "";
-  // const categories = getLinksFromLocalStorage();
-  const categories = JSON.parse(localStorage.getItem("categories")) || {};
+  const categories = getLinksFromLocalStorage();
   for (const category in categories) {
     createListByCategoryName(category);
     const links = categories[category];

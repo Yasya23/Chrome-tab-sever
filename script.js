@@ -5,9 +5,6 @@ const categoryContainer = document.getElementById("category-container");
 const createCategoryButton = document.getElementById("create-category");
 const existingCategoriesSelect = document.getElementById("existing-categories");
 const categoryNameInput = document.getElementById("category-name");
-const localStorageGetCategories = JSON.parse(
-  localStorage.getItem("categories") || "{}"
-);
 
 const list = document.querySelector(".links");
 let activeCategory = "Without Category";
@@ -68,9 +65,8 @@ function addLinkInTheList(activeCategory, link) {
 
   closeBtn.forEach(function (btn) {
     btn.addEventListener("click", function ({ target }) {
-      let categories = JSON.parse(localStorage.getItem("categories") || "{}");
-      const category = categories[target.dataset.id];
-      console.log(category.length);
+      const categories = JSON.parse(localStorage.getItem("categories") || "{}");
+      let category = categories[target.dataset.id];
       if (!category) {
         return;
       }
@@ -86,9 +82,11 @@ function addLinkInTheList(activeCategory, link) {
 }
 
 function checkEmptyCategories() {
-  let categories = JSON.parse(localStorage.getItem("categories") || "{}");
+  const categories = JSON.parse(localStorage.getItem("categories") || "{}");
   for (const category in categories) {
     if (categories[category].length === 0) {
+      let ulElement = document.getElementById(category);
+      ulElement.innerHTML = "";
       delete categories[category];
     }
   }
@@ -105,8 +103,10 @@ function createListByCategoryName(activeCategory) {
 
 function saveLinkToCategory(activeCategory, link) {
   let categories = JSON.parse(localStorage.getItem("categories")) || {};
-  if (!categories[activeCategory]) categories[activeCategory] = [];
-
+  if (!categories[activeCategory]) {
+    categories[activeCategory] = [];
+  }
+  localStorage.setItem("categories", JSON.stringify(categories));
   if (!categories[activeCategory].includes(link)) {
     categories[activeCategory].push(link);
     addLinkInTheList(activeCategory, link);
@@ -120,8 +120,8 @@ function getLinksFromLocalStorage() {
 
 function renderLinksFromLocalStorage() {
   list.innerHTML = "";
-  const categories = getLinksFromLocalStorage();
-
+  // const categories = getLinksFromLocalStorage();
+  const categories = JSON.parse(localStorage.getItem("categories")) || {};
   for (const category in categories) {
     createListByCategoryName(category);
     const links = categories[category];

@@ -2,7 +2,7 @@
 
 ## **Overview**
 
-QuickTabLink is a simple Google Chrome extension that allows you to quickly grab the URL of the current tab and save it for later use. Simply click the extension icon in your browser, and the link will be saved to your browser's storage. No more copying and pasting, or losing track of important links.
+QuickTabLink is a simple example of a Google Chrome extension that allows you to quickly grab the URL of the current tab and save it for later use. Simply click the extension icon in your browser, and the link will be saved to your browser's storage. No more copying and pasting, or losing track of important links.
 
 ## **Features**
 

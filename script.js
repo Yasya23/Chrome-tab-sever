@@ -1,3 +1,5 @@
+"use strict";
+
 const deleteBtn = document.getElementById("delete-btn");
 const tabBtn = document.getElementById("tab-btn");
 
@@ -22,6 +24,10 @@ createCategoryButton.addEventListener("click", function () {
   }
 });
 
+existingCategoriesSelect.addEventListener("change", () => {
+  activeCategory = existingCategoriesSelect.value;
+});
+
 function addCategoryInOptions(categoryName) {
   const option = document.createElement("option");
   option.value = categoryName;
@@ -30,13 +36,17 @@ function addCategoryInOptions(categoryName) {
 }
 
 tabBtn.addEventListener("click", function () {
-  // chrome.tabs.query({ active: true, currentWindow: true }, function (tabs) {
-  //   saveLinkToCategory(activeCategory, tabs[0].url);
-  // });
-  let cat = ["google.com", "github", "love", "popljhghg"];
-  let num = Math.floor(Math.random() * 4);
-  console.log(activeCategory);
-  saveLinkToCategory(activeCategory, cat[num]);
+  chrome.tabs.query({ active: true, currentWindow: true }, function (tabs) {
+    saveLinkToCategory(activeCategory, tabs[0].url);
+  });
+});
+
+deleteBtn.addEventListener("mouseover", () => {
+  deleteBtn.textContent = "All links and categories";
+});
+
+deleteBtn.addEventListener("mouseout", () => {
+  deleteBtn.textContent = "DELETE ALL";
 });
 
 function addLinkInTheList(activeCategory, link) {
@@ -138,7 +148,7 @@ function renderLinksFromLocalStorage() {
   }
 }
 
-deleteBtn.addEventListener("dblclick", function () {
+deleteBtn.addEventListener("click", function () {
   localStorage.clear();
   list.innerHTML = "";
   existingCategoriesSelect.innerHTML = `<option value="Without Category">Without Category</option>`;

@@ -13,14 +13,14 @@
 }
 
 body {
-  padding: 15px;
-  width: 450px;
+  padding: 20px;
+  width: 500px;
   font-family: Arial, Helvetica, sans-serif;
   color: var(--third-color);
 }
 
 .button {
-  padding: 10px 20px;
+  padding: 12px 20px;
   border-radius: 5px;
   border: none;
   box-shadow: 2px 2px 5px var(--main-color);
@@ -42,7 +42,7 @@ body {
 
 .category__input {
   width: 45%;
-  padding: 10px;
+  padding: 15px;
   border-radius: 5px;
   border: none;
   box-shadow: 2px 2px 5px var(--main-color);
@@ -50,7 +50,6 @@ body {
 }
 
 .category__input:focus {
-  outline: none;
   box-shadow: 4px 4px 10px var(--main-color);
 }
 
@@ -70,7 +69,6 @@ body {
 }
 
 .category__select:focus {
-  outline: none;
   box-shadow: 4px 4px 10px var(--main-color);
 }
 
@@ -85,15 +83,19 @@ body {
 
 .button-tab,
 .button-delete {
+  padding: 17px 10px;
   width: 50%;
   background-color: var(--main-color);
+  text-transform: uppercase;
 }
 
 .button-delete:hover {
   background-color: var(--fifth-color);
+  color: var(--fourth-color);
 }
 
 /*--------------------------*/
+
 .links-title {
   font-size: 16px;
   padding: 5px 0;
@@ -107,12 +109,20 @@ body {
 
 .link__wrapper {
   padding: 5px 0;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
 }
 
 .link__adress {
-  color: var(--secondary-color);
   margin-right: 15px;
+  font-size: 16px;
+  flex-grow: 1;
+  color: var(--secondary-color);
   text-decoration: none;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 
 .link__decor {
@@ -131,13 +141,7 @@ body {
 }
 
 .link__close {
-  visibility: hidden;
   padding: 5px 10px;
-}
-
-.link:hover .link__close,
-.link:focus .link__close {
-  visibility: visible;
 }
 
 .link:hover .link__decor {

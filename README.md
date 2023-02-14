@@ -18,6 +18,11 @@ QuickTabLink is a simple Google Chrome extension that allows you to quickly grab
 -	CSS
 -	JS
 
-![](./screenshot.png)
-[![](https://markdown-videos.deta.dev/youtube/UW_MLB6hyNM)](https://youtu.be/UW_MLB6hyNM)
+## **Screenshot**
+
+![](./screenshot.png) 
+
+## **Youtube video**
+
+[![Youtube video](https://markdown-videos.deta.dev/youtube/UW_MLB6hyNM)](https://youtu.be/UW_MLB6hyNM)
 

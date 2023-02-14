@@ -7,7 +7,7 @@ const existingCategoriesSelect = document.getElementById("existing-categories");
 const categoryNameInput = document.getElementById("category-name");
 
 const list = document.querySelector(".links");
-let activeCategory = "Without Category";
+let activeCategory = existingCategoriesSelect.value;
 
 const categories = [];
 
@@ -31,17 +31,12 @@ function addCategoryInOptions(categoryName) {
 
 tabBtn.addEventListener("click", function () {
   // chrome.tabs.query({ active: true, currentWindow: true }, function (tabs) {
-  //   myLeads.push(tabs[0].url);
-  //   localStorage.setItem("myLeads", JSON.stringify(myLeads));
-  //   render(myLeads);
+  //   saveLinkToCategory(activeCategory, tabs[0].url);
   // });
-  activeCategory = existingCategoriesSelect.value;
-  let link = {
-    id: existingCategoriesSelect.value,
-    url: "google.com",
-  };
-  // addLinkInTheList(activeCategory, link.url);
-  saveLinkToCategory(activeCategory, link.url);
+  let cat = ["google.com", "github", "love", "popljhghg"];
+  let num = Math.floor(Math.random() * 4);
+  console.log(activeCategory);
+  saveLinkToCategory(activeCategory, cat[num]);
 });
 
 function addLinkInTheList(activeCategory, link) {
@@ -88,6 +83,14 @@ function createListElement(activeList, activeCategory, link) {
   activeList.appendChild(li);
 }
 
+function createListByCategoryName(activeCategory) {
+  list.innerHTML += `<ul class="links__list" id="${activeCategory}">
+     <li class="list__link link">
+          <h2 class="links-title">${activeCategory}</h2>
+     </li>
+    </ul>`;
+}
+
 function checkEmptyCategories() {
   const categories = getLinksFromLocalStorage();
   for (const category in categories) {
@@ -98,14 +101,6 @@ function checkEmptyCategories() {
     }
   }
   setLinksToLocalStorage(categories);
-}
-
-function createListByCategoryName(activeCategory) {
-  list.innerHTML += `<ul class="links__list" id="${activeCategory}">
-     <li class="list__link link">
-          <h2 class="links-title">${activeCategory}</h2>
-     </li>
-    </ul>`;
 }
 
 function saveLinkToCategory(activeCategory, link) {

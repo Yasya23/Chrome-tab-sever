@@ -22,7 +22,7 @@ QuickTabLink is a simple Google Chrome extension that allows you to quickly grab
 
 ![](./screenshot.png) 
 
-## **Youtube video**
+## **YouTube video**
 
 [![Youtube video](https://markdown-videos.deta.dev/youtube/UW_MLB6hyNM)](https://youtu.be/UW_MLB6hyNM)
 

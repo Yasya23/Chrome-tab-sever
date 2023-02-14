@@ -4,8 +4,6 @@
 
 QuickTabLink is a simple Google Chrome extension that allows you to quickly grab the URL of the current tab and save it for later use. Simply click the extension icon in your browser, and the link will be saved to your browser's storage. No more copying and pasting, or losing track of important links.
 
-![](./screenshot.png)
-
 ## **Features**
 
 - Create categories and save links on it
@@ -19,3 +17,7 @@ QuickTabLink is a simple Google Chrome extension that allows you to quickly grab
 -	HTML
 -	CSS
 -	JS
+
+![](./screenshot.png)
+[![](https://markdown-videos.deta.dev/youtube/v=UW_MLB6hyNM)](https://youtu.be/v=UW_MLB6hyNM)
+
